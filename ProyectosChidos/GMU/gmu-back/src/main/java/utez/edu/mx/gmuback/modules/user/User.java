@@ -32,7 +32,6 @@ public class User {
     @Column(name = "rol")
     private String rol;
 
-    @OneToOne(mappedBy = "user")
-    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Student student;
 }

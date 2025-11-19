@@ -24,7 +24,7 @@ public class MainSecurity {
                         .anyRequest().authenticated()
                 );
 
-        return null;
+        return http.build();
     }
 
     private CorsConfigurationSource corsRegistry() {
