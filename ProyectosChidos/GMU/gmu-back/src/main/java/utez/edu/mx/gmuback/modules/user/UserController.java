@@ -1,6 +1,5 @@
 package utez.edu.mx.gmuback.modules.user;
 
-import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import utez.edu.mx.gmuback.modules.user.dto.UpdateUserDTO;
@@ -9,9 +8,13 @@ import utez.edu.mx.gmuback.utils.APIResponse;
 
 @RestController
 @RequestMapping("/gmu-api/user")
-@AllArgsConstructor
+
 public class UserController {
     private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("")
     public ResponseEntity<APIResponse> findAll() {

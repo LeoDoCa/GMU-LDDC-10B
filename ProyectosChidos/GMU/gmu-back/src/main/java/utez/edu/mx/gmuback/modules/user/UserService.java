@@ -24,9 +24,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final StudentRepository studentRepository;
 
+    public UserService(UserRepository userRepository, StudentRepository studentRepository) {
+        this.userRepository = userRepository;
+        this.studentRepository = studentRepository;
+    }
+
     private UserDTO convertEntityToDTO(User u){
         StudentDTO studentDTO = new StudentDTO(
-                u.getStudent().getFullName(),
+                u.getStudent().getFullname(),
                 u.getStudent().getMatricula()
         );
 
@@ -44,11 +49,6 @@ public class UserService {
         }
 
         return list;
-    }
-
-    public UserService(UserRepository userRepository, StudentRepository studentRepository) {
-        this.userRepository = userRepository;
-        this.studentRepository = studentRepository;
     }
 
     @Transactional(readOnly = true)
@@ -85,12 +85,12 @@ public class UserService {
             u.setRol(Role.STUDENT.getName());
             u.setUsername(dto.getUsername());
             u.setEmail(dto.getEmail());
-            u.setPassword(PasswordUtils.generateEncodedPassword(dto.getUsername(),  dto.getFullName()));
+            u.setPassword(PasswordUtils.generateEncodedPassword(dto.getUsername(),  dto.getFullname()));
 
             u =  userRepository.saveAndFlush(u);
 
             Student s = new Student();
-            s.setFullName(dto.getFullName());
+            s.setFullname(dto.getFullname());
             s.setMatricula(generateMatricula());
             s.setUser(u);
 
@@ -142,6 +142,7 @@ public class UserService {
 
         if (found != null) {
             try {
+                studentRepository.deleteById(found.getStudent().getId());
                 userRepository.deleteById(found.getId());
 
                 body = new APIResponse("Operación exitosa", HttpStatus.OK);
