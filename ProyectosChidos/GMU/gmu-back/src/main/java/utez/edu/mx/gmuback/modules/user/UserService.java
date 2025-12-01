@@ -36,6 +36,7 @@ public class UserService {
         );
 
         return new UserDTO(
+                u.getId(),
                 u.getUsername(),
                 u.getEmail(),
                 studentDTO

@@ -2,8 +2,6 @@ package utez.edu.mx.gmuback.modules.students.dto;
 
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class StudentDTO {

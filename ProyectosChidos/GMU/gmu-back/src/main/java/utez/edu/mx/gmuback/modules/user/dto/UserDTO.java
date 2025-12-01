@@ -3,11 +3,10 @@ package utez.edu.mx.gmuback.modules.user.dto;
 import lombok.*;
 import utez.edu.mx.gmuback.modules.students.dto.StudentDTO;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class UserDTO {
+    private Long id;
     private String username;
     private String email;
     private StudentDTO student;
@@ -39,7 +38,8 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String username, String email, StudentDTO student) {
+    public UserDTO(Long id, String username, String email, StudentDTO student) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.student = student;
